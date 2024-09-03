@@ -1,7 +1,7 @@
 "use client"
 import { CrowdFundingContext } from '@/context/crowdFundingContext';
 import React, { useState , useContext } from 'react'
-
+import { useRouter } from "next/navigation";
 
 function page() {
     const [title, setTitle] = useState("");
@@ -9,10 +9,12 @@ function page() {
     const [amount,setAmount] = useState("");
     const [deadline, setDeadline] = useState("")
     const {createCampaign} = useContext(CrowdFundingContext)
+    const router = useRouter();
     const handleSubmission = async()=>{
       await createCampaign({
         title,description,amount,deadline
       })
+      router.push('/');
     }
     
   return (
